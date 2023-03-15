@@ -1,0 +1,2 @@
+# Grafics
+Számítógépi grafika gyakorlat
