@@ -8,12 +8,8 @@ void init_scene(Scene* scene)
     load_model(&(scene->cube), "assets/models/cube.obj");
     scene->texture_id = load_texture("assets/textures/cube.png");
 
-    glBindTexture(GL_TEXTURE_2D, scene->texture_id);
-
     load_model(&(scene->cube2), "assets/models/raptor.obj");
     scene->texture_id2 = load_texture("assets/textures/raptor.png");
-
-    glBindTexture(GL_TEXTURE_2D, scene->texture_id2);
 
     scene->material.ambient.red = 1.0;
     scene->material.ambient.green = 1.0;
@@ -79,7 +75,18 @@ void render_scene(const Scene* scene)
     set_material(&(scene->material));
     set_lighting();
     draw_origin();
+
+    glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D, scene->texture_id);
+    glRotated(90, 5, 5, 0);
     draw_model(&(scene->cube));
+    glPopMatrix();
+
+    glPushMatrix();
+    glBindTexture(GL_TEXTURE_2D, scene->texture_id2);
+    glTranslatef(1, 1, 0);
+    draw_model(&(scene->cube2));
+    glPopMatrix();
 }
 
 void draw_origin()
