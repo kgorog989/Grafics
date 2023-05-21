@@ -112,6 +112,8 @@ void handle_app_events(App *app)
     static int mouse_y = 0;
     int x;
     int y;
+    float ndc_x;
+    float ndc_y;
 
     while (SDL_PollEvent(&event))
     {
@@ -156,6 +158,17 @@ void handle_app_events(App *app)
             break;
         case SDL_MOUSEBUTTONDOWN:
             is_mouse_down = true;
+            printf("Mouse down: coordinates %d %d\n", event.button.x, event.button.y);
+
+            SDL_GetMouseState(&x, &y);
+
+            convert_to_NDC(x, y, &ndc_x, &ndc_y);
+            printf("NDC: %f %f\n", ndc_x, ndc_y);
+
+            Ray ray;
+            init_ray(&ray, ndc_x, ndc_y, app->camera.position);
+            int intersec = ray_box_intersection(&ray, &(app->scene.kid.box));
+            printf("\n\nIntersection occured: %d\n\n", intersec);
             break;
         case SDL_MOUSEMOTION:
             SDL_GetMouseState(&x, &y);
@@ -188,13 +201,13 @@ void update_app(App *app)
     update_scene(&(app->scene));
 
     int check_kid = check_collision(&(app->camera.box), &(app->scene.kid.box));
-    if (check_kid)
+    if (check_kid == 1)
     {
         handle_collision(&(app->camera.box), &(app->scene.kid.box), &(app->camera.position), &(app->camera.speed));
     }
-    
+
     int check_ghost = check_collision(&(app->camera.box), &(app->scene.ghost.box));
-    if (check_ghost)
+    if (check_ghost == 1)
     {
         handle_collision(&(app->camera.box), &(app->scene.ghost.box), &(app->camera.position), &(app->camera.speed));
     }

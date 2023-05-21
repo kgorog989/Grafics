@@ -37,4 +37,14 @@ typedef struct Material
  */
 double degree_to_radian(double degree);
 
+/**
+ * Matrix inversion using Gaussian elimination
+*/
+int invert_matrix(const float* src, float* dest);
+
+/**
+ * Convert mouse coordinates to NDC
+*/
+void convert_to_NDC(int x, int y, float* ndc_x, float* ndc_y);
+
 #endif /* UTILS_H */
