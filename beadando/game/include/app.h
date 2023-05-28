@@ -3,7 +3,6 @@
 
 #include "camera.h"
 #include "scene.h"
-#include "ray.h"
 
 #include <SDL2/SDL.h>
 
@@ -20,6 +19,9 @@ typedef struct App
     double uptime;
     Camera camera;
     Scene scene;
+    int score;
+    bool show_help;
+    GLint help_texture_id;
 } App;
 
 /**
@@ -56,5 +58,15 @@ void render_app(App* app);
  * Destroy the application.
  */
 void destroy_app(App* app);
+
+/**
+ * Show the help menu.
+*/
+void show_help_menu(App* app);
+
+/**
+ * Handle friend making.
+*/
+void handle_friends(App* app);
 
 #endif /* APP_H */

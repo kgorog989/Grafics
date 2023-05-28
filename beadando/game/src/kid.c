@@ -4,13 +4,16 @@
 #include <obj/draw.h>
 
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 
 void init_kid(Kid* kid)
 {
-    kid->position.x = 2;
-    kid->position.y = 0;
+    kid->position.x = -20 + ((float)rand() / RAND_MAX) * 40;
+    kid->position.y = -20 + ((float)rand() / RAND_MAX) * 40;
     kid->position.z = 0;
     kid->size = 0.9;
+    kid->are_friends = 0;
     
     load_model(&(kid->model), "assets/models/Kid.obj");
     kid->texture_id = load_texture("assets/textures/Kid.png");
@@ -27,5 +30,4 @@ void render_kid(const Kid* kid)
     glScalef(kid->size, kid->size, kid->size);
     draw_model(&(kid->model));
     glPopMatrix();
-
 }

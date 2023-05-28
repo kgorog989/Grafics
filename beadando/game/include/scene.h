@@ -10,8 +10,8 @@
 
 typedef struct Scene
 {
-    Ghost ghost;
-    Kid kid;
+    Ghost ghosts[NUM_GHOST];
+    Kid kids[NUM_KID];
     Material material;
 } Scene;
 

@@ -7,6 +7,9 @@
 
 #include <obj/model.h>
 
+#define NUM_GHOST 10
+#define GHOST_POINT 1
+
 typedef struct Ghost
 {
     Model model;
@@ -14,6 +17,7 @@ typedef struct Ghost
     vec3 position;
     float size;
     BoundingBox box;
+    int are_friends;
 } Ghost;
 
 

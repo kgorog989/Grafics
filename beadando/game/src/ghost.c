@@ -6,14 +6,16 @@
 #include <SDL2/SDL.h>
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 void init_ghost(Ghost* ghost)
 {
-    ghost->position.x = 1;
-    ghost->position.y = 0.5;
+    ghost->position.x = -20 + ((float)rand() / RAND_MAX) * 40;
+    ghost->position.y = -20 + ((float)rand() / RAND_MAX) * 40;
     ghost->position.z = 0.5;
     ghost->size = 0.1;
+    ghost->are_friends = 0;
     
     load_model(&(ghost->model), "assets/models/SheetGhost.obj");
     ghost->texture_id = load_texture("assets/textures/SheetGhost.png");
@@ -30,7 +32,6 @@ void render_ghost(const Ghost* ghost)
     glScalef(ghost->size, ghost->size, ghost->size);
     draw_model(&(ghost->model));
     glPopMatrix();
-
 }
 
 void levitate(Ghost* ghost)

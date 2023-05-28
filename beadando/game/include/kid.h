@@ -7,6 +7,9 @@
 
 #include <obj/model.h>
 
+#define NUM_KID 20
+#define KID_POINT 3
+
 typedef struct Kid
 {
     Model model;
@@ -14,6 +17,7 @@ typedef struct Kid
     vec3 position;
     float size;
     BoundingBox box;
+    int are_friends;
 } Kid;
 
 

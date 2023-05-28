@@ -19,12 +19,12 @@ void init_camera(Camera *camera)
 
     camera->is_preview_visible = false;
 
-    camera->box.min.x = -0.25;
-    camera->box.min.y = -0.25;
-    camera->box.min.z = -0.25;
+    camera->box.min.x = -0.2;
+    camera->box.min.y = -0.2;
+    camera->box.min.z = -0.2;
 
-    camera->box.max.x = 0.25;
-    camera->box.max.y = 0.25;
+    camera->box.max.x = 0.2;
+    camera->box.max.y = 0.2;
     camera->box.max.z = 1;
 
     camera->box.dimensions.x = camera->box.max.x - camera->box.min.x;
@@ -90,7 +90,7 @@ void rotate_camera(Camera *camera, double horizontal, double vertical)
         camera->rotation.x -= 360.0;
     }
 
-    camera->rotation.x = 0;
+    //camera->rotation.x = 0;
 }
 
 void set_camera_speed(Camera *camera, double speed)
