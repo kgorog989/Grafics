@@ -6,7 +6,11 @@
 #include "ghost.h"
 #include "kid.h"
 
+#include <SDL2/SDL.h>
+
 #include <obj/model.h>
+
+#include <math.h>
 
 typedef struct Scene
 {

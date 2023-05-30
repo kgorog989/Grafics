@@ -23,6 +23,6 @@ int check_collision(BoundingBox* box1, BoundingBox* box2);
 /**
  * Handle collision.
 */
-void handle_collision(BoundingBox* box1, BoundingBox* box2, vec3* position, vec3* speed);
+void handle_collision(BoundingBox* box1, BoundingBox* box2, vec3* position);
 
 #endif /* COLLISION_H */

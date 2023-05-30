@@ -20,7 +20,7 @@ void init_app(App *app, int width, int height)
     }
 
     app->window = SDL_CreateWindow(
-        "Cube!",
+        "Friendly Ghost",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         width, height,
         SDL_WINDOW_OPENGL);
@@ -64,7 +64,7 @@ void init_opengl()
     glEnable(GL_NORMALIZE);
     glEnable(GL_AUTO_NORMAL);
 
-    glClearColor(0.1, 0.1, 0.1, 1.0);
+    glClearColor(0.1, 0.9, 0.5, 1.0);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -199,7 +199,9 @@ void update_app(App *app)
         int check_kid = check_collision(&(app->camera.box), &(app->scene.kids[i].box));
         if (check_kid == 1)
         {
-            handle_collision(&(app->camera.box), &(app->scene.kids[i].box), &(app->camera.position), &(app->camera.speed));
+            handle_collision(&(app->camera.box), &(app->scene.kids[i].box), &(app->camera.position));
+            set_camera_side_speed(&(app->camera), 0);
+            set_camera_speed(&(app->camera), 0);
         }
     }
 
@@ -208,7 +210,9 @@ void update_app(App *app)
         int check_ghost = check_collision(&(app->camera.box), &(app->scene.ghosts[i].box));
         if (check_ghost == 1)
         {
-            handle_collision(&(app->camera.box), &(app->scene.ghosts[i].box), &(app->camera.position), &(app->camera.speed));
+            handle_collision(&(app->camera.box), &(app->scene.ghosts[i].box), &(app->camera.position));
+            set_camera_side_speed(&(app->camera), 0);
+            set_camera_speed(&(app->camera), 0);
         }
     }
 }
@@ -232,6 +236,13 @@ void render_app(App *app)
     {
         show_help_menu(app);
     }
+
+    if (NUM_GHOST * GHOST_POINT + NUM_KID * KID_POINT == app->score)
+    {
+        printf("Everybody is your friend now!\n");
+        app->is_running = false;
+    }
+    
 
     SDL_GL_SwapWindow(app->window);
 }
@@ -257,7 +268,6 @@ void show_help_menu(App *app)
     glBindTexture(GL_TEXTURE_2D, app->help_texture_id);
     glDisable(GL_LIGHTING);
     glDisable(GL_DEPTH_TEST);
-    // glEnable(GL_COLOR_MATERIAL);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -275,7 +285,6 @@ void show_help_menu(App *app)
     glVertex3f(-1, -1, -3);
     glEnd();
 
-    // glDisable(GL_COLOR_MATERIAL);
     glEnable(GL_LIGHTING);
     glEnable(GL_DEPTH_TEST);
     glBindTexture(GL_TEXTURE_2D, 0);
@@ -293,10 +302,9 @@ void handle_friends(App *app)
         if (distance < 2 && app->scene.kids[i].are_friends == 0)
         {
             printf("Made a friend!\n");
-            printf("distance %f\n", distance);
             app->scene.kids[i].are_friends = 1;
             app->score += KID_POINT;
-            printf("points: %d\n", app->score);
+            printf("Points: %d\n", app->score);
         }
     }
     for (int i = 0; i < NUM_GHOST; i++)
@@ -308,10 +316,9 @@ void handle_friends(App *app)
         if (distance < 2 && app->scene.ghosts[i].are_friends == 0)
         {
             printf("Made a friend!\n");
-            printf("distance %f\n", distance);
             app->scene.ghosts[i].are_friends = 1;
             app->score += GHOST_POINT;
-            printf("points: %d\n", app->score);
+            printf("Points: %d\n", app->score);
         }
     }
 }

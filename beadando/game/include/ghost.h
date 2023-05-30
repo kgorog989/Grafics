@@ -7,7 +7,7 @@
 
 #include <obj/model.h>
 
-#define NUM_GHOST 10
+#define NUM_GHOST 20
 #define GHOST_POINT 1
 
 typedef struct Ghost

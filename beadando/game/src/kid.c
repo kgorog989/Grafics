@@ -29,5 +29,6 @@ void render_kid(const Kid* kid)
     glTranslatef(kid->position.x, kid->position.y, kid->position.z);
     glScalef(kid->size, kid->size, kid->size);
     draw_model(&(kid->model));
+    glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
 }

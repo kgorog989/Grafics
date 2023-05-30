@@ -31,6 +31,7 @@ void render_ghost(const Ghost* ghost)
     glTranslatef(ghost->position.x, ghost->position.y, ghost->position.z);
     glScalef(ghost->size, ghost->size, ghost->size);
     draw_model(&(ghost->model));
+    glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
 }
 

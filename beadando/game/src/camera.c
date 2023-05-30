@@ -3,7 +3,6 @@
 #include <GL/gl.h>
 
 #include <math.h>
-#include <stdio.h>
 
 void init_camera(Camera *camera)
 {
@@ -45,14 +44,26 @@ void update_camera(Camera *camera, double time)
     camera->position.x += cos(side_angle) * camera->speed.x * time;
     camera->position.y += sin(side_angle) * camera->speed.x * time;
 
-    camera->box.min.x += cos(angle) * camera->speed.y * time;
-    camera->box.min.y += sin(angle) * camera->speed.y * time;
-    camera->box.max.x += cos(angle) * camera->speed.y * time;
-    camera->box.max.y += sin(angle) * camera->speed.y * time;
-    camera->box.min.x += cos(side_angle) * camera->speed.x * time;
-    camera->box.min.y += sin(side_angle) * camera->speed.x * time;
-    camera->box.max.x += cos(side_angle) * camera->speed.x * time;
-    camera->box.max.y += sin(side_angle) * camera->speed.x * time;
+    if (camera->position.x > 20 || camera->position.x < -20 || camera->position.y < -20 || camera->position.y > 20)
+    {
+        camera->position.x -= cos(angle) * camera->speed.y * time;
+        camera->position.y -= sin(angle) * camera->speed.y * time;
+        camera->position.x -= cos(side_angle) * camera->speed.x * time;
+        camera->position.y -= sin(side_angle) * camera->speed.x * time;
+        set_camera_speed(camera, 0);
+        set_camera_speed(camera, 0);
+    }
+    else
+    {
+        camera->box.min.x += cos(angle) * camera->speed.y * time;
+        camera->box.min.y += sin(angle) * camera->speed.y * time;
+        camera->box.max.x += cos(angle) * camera->speed.y * time;
+        camera->box.max.y += sin(angle) * camera->speed.y * time;
+        camera->box.min.x += cos(side_angle) * camera->speed.x * time;
+        camera->box.min.y += sin(side_angle) * camera->speed.x * time;
+        camera->box.max.x += cos(side_angle) * camera->speed.x * time;
+        camera->box.max.y += sin(side_angle) * camera->speed.x * time;
+    }
 }
 
 void set_view(const Camera *camera)

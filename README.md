@@ -4,9 +4,9 @@ Számítógépi grafika gyakorlat
 Görög Krisztina Erzsébet, MPW46D
 
 
-Féléves feladat: A játékunk főhőse egy szellem, akitől mindenki fél, emiatt nagyon magányos és barátokat szeretne szerezni. Halloween éjszakája erre épp jó lehetőséget ad, ugyanis a beöltözött gyerekek nem fognak megijedni tőle, azt hiszik majd, hogy jelmezben van. Barátokat szerezni a modellekre való kattintással tudunk, a játék célja, hogy minél többet szerezzünk adott idő alatt. A még rendelkezésre álló idő, és a pontszám ki van írva a képernyőre. Ha lejárt az idő, a játék véget ér. 
+Féléves feladat: A játékunk főhőse egy szellem, akitől mindenki fél, emiatt nagyon magányos és barátokat szeretne szerezni. Halloween éjszakája erre épp jó lehetőséget ad, ugyanis a beöltözött gyerekek nem fognak megijedni tőle, azt hiszik majd, hogy jelmezben van. Barátokat szerezni a modellek közelében történő space billentyű lenyomásával tudunk, a játék célja, hogy megszerezzük az összes barátkozásból kapható pontot. A pályán zöld köd van, a fény pedig az idő függvényében villog. 
 A játék belső nézetes, mozogni a WASD billentyűkkel lehet, az objektumokon nem lehet átmenni, ezt bounding boxokkal biztosítjuk. Barátkozni gyerekekkel és más szellemekkel tudunk; előbbi 3 pontot, utóbbi 1 pontot ér. A szellemek lebegése animált. 
-
+A help menüt az F1 billentyű lenyomva tartásával lehet előhozni. 
 
 Models used in the assignment:
 

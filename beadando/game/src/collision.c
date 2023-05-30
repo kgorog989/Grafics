@@ -116,7 +116,7 @@ int check_collision(BoundingBox *box1, BoundingBox *box2)
     return 1;
 }
 
-void handle_collision(BoundingBox *box1, BoundingBox *box2, vec3 *position, vec3 *speed)
+void handle_collision(BoundingBox *box1, BoundingBox *box2, vec3 *position)
 {
 
     // Checking overlaps from both directions
@@ -177,8 +177,4 @@ void handle_collision(BoundingBox *box1, BoundingBox *box2, vec3 *position, vec3
         }
     }
 
-    // Stopping movement
-    speed->x = 0;
-    speed->y = 0;
-    speed->z = 0;
 }
